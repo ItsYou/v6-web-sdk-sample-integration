@@ -199,8 +199,28 @@ export async function captureOrder(orderId: string) {
  * Save payment methods
  * ###################################################################### */
 
+interface TempSetupTokenRequest extends SetupTokenRequest { 
+  paymentSource: {
+    bank: { 
+      achDebit: {
+        billingAddress: {
+          countryCode: string;
+        };
+        experienceContext: {
+          cancelUrl: string;
+          locale: string;
+          returnUrl: string;
+        };
+        verification: {
+          paypal: {
+            method: string
+          };
+        };
+      };
+    }
+}
 export async function createSetupToken(
-  setupTokenRequestBody: SetupTokenRequest,
+  setupTokenRequestBody: TempSetupTokenRequest,
   paypalRequestId?: string,
 ) {
   try {
@@ -237,6 +257,32 @@ export async function createSetupTokenWithSampleDataForPayPal() {
           vaultInstruction: VaultInstructionAction.OnPayerApproval,
         },
         usageType: PaypalPaymentTokenUsageType.Merchant,
+      },
+    },
+  };
+
+  return createSetupToken(defaultSetupTokenRequestBody, Date.now().toString());
+}
+
+export async function createSetupTokenWithSampleDataForAch() {
+  const defaultSetupTokenRequestBody = {
+    paymentSource: {
+      bank: {
+        achDebit: {
+          billingAddress: {
+            countryCode: "US",
+          },
+          experienceContext: {
+            cancelUrl: "https://example.com/cancelUrl",
+            locale: "en-US",
+            returnUrl: "https://example.com/returnUrl",
+          },
+          verification: {
+            paypal: {
+              method: "INSTANT_ACCOUNT_VERIFICATION",
+            },
+          },
+        },
       },
     },
   };
