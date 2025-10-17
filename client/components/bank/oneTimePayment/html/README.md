@@ -27,16 +27,67 @@ Before running this demo, you'll need to set up accounts and configure your deve
    - Enable **Features** -> **Accept payments** -> **Bank ACH** (be sure to click **Save Changes** below)
    - Note your **Client ID** and **Secret key** under **API credentials** for later configuration of the `.env` file
 
-   ![Screenshot](images/enable-bank-ach.jpg)
 
-## How to Run Locally
+### Server Setup
 
-Update the `PAYPAL_SANDBOX_CLIENT_ID` and `PAYPAL_SANDBOX_CLIENT_SECRET` in `.env` file in the root directory of this project with your sandbox application's client ID and secret 
+1. **Navigate to the server directory:**
 
-```bash
-npm install
-npm start
-```
+   ```bash
+   cd server/node
+   ```
 
-- The Bank ACH demo will be available at [http://localhost:3000](http://localhost:3000).
-- The backend API server (see instructions in `/server/node/README.md`) must also be running on [http://localhost:8080](http://localhost:8080).
+2. **Install dependencies:**
+
+   ```bash
+   npm install
+   ```
+
+3. **Configure environment variables:**
+   Create a `.env` file in the root directory:
+
+   ```env
+   PAYPAL_SANDBOX_CLIENT_ID=your_paypal_sandbox_client_id
+   PAYPAL_SANDBOX_CLIENT_SECRET=your_paypal_sandbox_client_secret
+   ```
+
+4. **Start the server:**
+   ```bash
+   npm start
+   ```
+   The server will run on `https://localhost:8080`
+
+### Client Setup
+
+1. **Navigate to the Apple Pay demo directory:**
+
+   ```bash
+   cd client/components/applePay/html
+   ```
+
+2. **Install dependencies:**
+
+   ```bash
+   npm install
+   ```
+
+3. **Start the development server:**
+   ```bash
+   npm start
+   ```
+   The demo will be available at `http://localhost:3000`
+
+
+## 🧪 Testing the Integration
+
+1. **Visit http://localhost:3000**
+    - Enter your Merchant ID
+    - Click the Bank Payment button
+    - The bank login popup will be displayed
+
+3. **Complete bank login and account selection**
+    - Enter your credentials to get authenticated
+    - Select the bank and account you would like to use for testing
+
+4. **Verify Results**
+    - Check the browser console logs for order capture details
+    - Check Event Logs -> API Calls at [developer.paypal.com](https://developer.paypal.com)

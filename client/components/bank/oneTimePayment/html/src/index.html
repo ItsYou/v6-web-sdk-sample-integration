@@ -24,21 +24,16 @@
     <div id="ach-button-container">
       <button id="ach-button" hidden>Pay with Bank Account</button>
     </div>
-    <input type="text" id="merchant-id-input" placeholder="Enter custom merchant ID (optional)" />
+
+    <label for="merchant-id-input">Merchant ID:</label>
+    <input type="text" id="merchant-id-input" placeholder="Enter your merchant ID" />
+
     <script src="app.js"></script>
 
     <script type="module">
-      // Dynamically load SDK based on environment
-      const sdkUrl = import.meta.env.LOCAL_SDK === true
-        ? '/web-sdk/v6/core'
-        : 'https://www.sandbox.paypal.com/web-sdk/v6/core';
-
-      console.log('Loading SDK from:', sdkUrl);
-      console.log('LOCAL_SDK env:', import.meta.env.LOCAL_SDK);
-
       const script = document.createElement('script');
       script.async = true;
-      script.src = sdkUrl;
+      script.src = 'https://www.sandbox.paypal.com/web-sdk/v6/core';
       script.onload = () => window.onPayPalWebSdkLoaded();
       document.head.appendChild(script);
     </script>

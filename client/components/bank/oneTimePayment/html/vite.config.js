@@ -2,8 +2,6 @@ import { defineConfig } from "vite";
 
 // https://vitejs.dev/config/
 export default defineConfig(() => {
-  const useLocalSDK = process.env.LOCAL_SDK === 'true';
-
   return {
     plugins: [],
     root: "src",
@@ -15,17 +13,7 @@ export default defineConfig(() => {
           changeOrigin: true,
           secure: false,
         },
-        ...(useLocalSDK ? {
-          '/web-sdk': {
-            target: 'https://localhost.paypal.com:3002',
-            changeOrigin: true,
-            secure: false,
-          }
-        } : {})
       },
-    },
-    define: {
-      'import.meta.env.LOCAL_SDK': JSON.stringify(useLocalSDK),
     },
   };
 });

@@ -1,5 +1,5 @@
 const getMerchantId = () => { 
-  return document.getElementById('merchant-id-input').value || '7NU2UD5KWFN6U'
+  return document.getElementById('merchant-id-input').value
 }
 
 async function onPayPalWebSdkLoaded() {
