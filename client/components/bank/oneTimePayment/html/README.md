@@ -40,9 +40,3 @@ npm start
 
 - The Bank ACH demo will be available at [http://localhost:3000](http://localhost:3000).
 - The backend API server (see instructions in `/server/node/README.md`) must also be running on [http://localhost:8080](http://localhost:8080).
-
-
-## File Structure
-
-- [`src/index.html`](src/index.html): Main HTML page for the Bank ACH demo.
-- [`src/app.js`](src/fastlaneSdkComponent.js): Loads the PayPal SDK and initializes Fastlane.
